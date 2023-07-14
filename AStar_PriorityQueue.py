@@ -1,8 +1,8 @@
+
 class Astar_Node:
-    def __init__(self, weight, heuristic):
-        self.weight = weight
+    def __init__(self, heuristic):
         self.heuristic = heuristic 
-        self.priority = weight + heuristic
+        self.priority = None
         self.next = None
 
 class Astar_PriorityQueue:
@@ -14,17 +14,18 @@ class Astar_PriorityQueue:
             return True
         else:
             return False
-        
 
-    def push(self, weight, heuristic):
+    def push(self, cost, heurisitc):
+
+        temp = Astar_Node(heurisitc)
+        temp.priority = temp.heuristic + cost
         
-        temp = Astar_Node(weight,heuristic)
         if self.isEmpty() == True:
             self.front = temp
             return
         
         else:
-            if temp.priority < self.front.priority:
+            if  temp.priority < self.front.priority:
                 temp.next = self.front
                 self.front = temp
             
@@ -33,7 +34,7 @@ class Astar_PriorityQueue:
                 ptr = self.front
                 while ptr:
 
-                    if ptr.priority <= self.front.priority:
+                    if ptr.priority<= self.front.priority:
                         break
                     
                     ptr = ptr.next
@@ -52,9 +53,11 @@ class Astar_PriorityQueue:
             self.front = self.front.next
             return self.front
 
-    def priority(self):
+    def peek(self):
         if self.isEmpty():
             return None
         else:
-            return self.front.priority
+            return self.front.heuristic
+    
+   
 
