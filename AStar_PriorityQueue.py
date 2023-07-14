@@ -15,19 +15,18 @@ class Astar_PriorityQueue:
         else:
             return False
 
-    def push(self, cost, heurisitc):
+    def push(self, cost, node:Astar_Node):
 
-        temp = Astar_Node(heurisitc)
-        temp.priority = temp.heuristic + cost
+        node.priority = node.heuristic + cost
         
         if self.isEmpty() == True:
-            self.front = temp
+            self.front = node
             return
         
         else:
-            if  temp.priority < self.front.priority:
-                temp.next = self.front
-                self.front = temp
+            if  node.priority < self.front.priority:
+                node.next = self.front
+                self.front = node
             
             else:
 
@@ -39,8 +38,8 @@ class Astar_PriorityQueue:
                     
                     ptr = ptr.next
                 
-                temp.next = ptr.next
-                ptr.next = temp
+                node.next = ptr.next
+                ptr.next = node
 
         return
     
