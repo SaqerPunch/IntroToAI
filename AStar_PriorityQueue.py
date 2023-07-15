@@ -44,13 +44,12 @@ class Astar_PriorityQueue:
         return
     
     def pop(self):
-
         if self.isEmpty():
             return None
-        
         else:
+            front_node = self.front
             self.front = self.front.next
-            return self.front
+            return front_node
 
     def peek(self):
         if self.isEmpty():
