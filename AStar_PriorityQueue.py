@@ -1,6 +1,7 @@
 
 class Astar_Node:
-    def __init__(self, heuristic):
+    def __init__(self, heuristic, index = None):
+        self.index = index
         self.heuristic = heuristic 
         self.priority = None
         self.next = None
